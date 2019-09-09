@@ -72,7 +72,9 @@ class CommandStream extends MessageStream {
       ...eventData
     ] = this.amf.decode(message)
     // TODO: definitively abstract this to avoid undefined errors!
-    this.executionQueue[transactionId][method](eventData)
+    if (transactionId) {
+      this.executionQueue[transactionId][method](eventData)
+    }
   }
 }
 
