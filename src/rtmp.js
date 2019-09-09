@@ -12,9 +12,7 @@ const connect = async ({host = 'localhost', port = 1935, app, swfUrl, tcUrl, pag
       const netConnection = streamFactory.netConnection
       try {
         await netConnection.connect({app, swfUrl, tcUrl, pageUrl})
-        // TODO: maybe, createStream could have a hook to return a NetStream instance
-        const [, streamId] = await netConnection.createStream()
-        resolve(streamFactory.createNetStream(streamId))
+        resolve(netConnection);
       } catch(e) {
         reject(e)
       }

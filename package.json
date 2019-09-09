@@ -1,6 +1,6 @@
 {
-  "name": "librtmp",
-  "version": "0.1.0",
+  "name": "rtmp-lib",
+  "version": "1.0.0",
   "description": "librtmp for javascript",
   "main": "src/rtmp.js",
   "scripts": {
@@ -8,7 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arturomtm/librtmpjs.git"
+    "url": "git@github.com:csimi/librtmpjs.git"
+  },
+  "publishConfig": {
+    "registry": "https://ip-109-71-162-126.dditscdn.com/nexus/repository/docler-npm"
   },
   "keywords": [
     "rtmp",
@@ -21,5 +24,8 @@
     "rtmp-amf": "^1.0.0",
     "rtmp-handshake": "^1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "src/**"
+  ]
 }
