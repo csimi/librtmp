@@ -1,4 +1,4 @@
-const AMF = require('rtmp-amf')
+const AMF = require('@csimi/amf')
 const MessageStream = require('./message_stream')
 const { codeToEvent } = require('../util')
 

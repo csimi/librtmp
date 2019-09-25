@@ -1,6 +1,6 @@
 {
-  "name": "librtmp",
-  "version": "0.1.0",
+  "name": "@csimi/librtmp",
+  "version": "1.0.2",
   "description": "librtmp for javascript",
   "main": "src/rtmp.js",
   "scripts": {
@@ -8,7 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arturomtm/librtmpjs.git"
+    "url": "git@github.com:csimi/librtmp.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "rtmp",
@@ -17,9 +20,12 @@
   "author": "arturomtm <arturomtm@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@csimi/amf": "^1.0.1",
     "pump": "^3.0.0",
-    "rtmp-amf": "^1.0.0",
     "rtmp-handshake": "^1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "src/**"
+  ]
 }

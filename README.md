@@ -1,25 +1,37 @@
-_Warning: this is a Work-in-Progress library_
+# LIBRTMP
 
-# LIBRTMPJS
-
-Librtmpjs is a set of entities and utils to establish a connection and grab resources from a Media Server using RTMP protocol. It targets Node.js and it is intented to be flexible and easily customizable. Despite it's not fully implemented, the next entities are available at this moment:
+Librtmp is a set of entities and utils to establish a connection and grab resources from a Media Server using RTMP protocol. It targets Node.js and it is intented to be flexible and easily customizable. Despite it's not fully implemented, the next entities are available at this moment:
 
 - Handshake
 - NetConnection
 - NetStream
 
-A connection method is also provided:
+## Installation
+
+Add the following line in .npmrc
+
+```
+@csimi:registry=https://npm.pkg.github.com/
+```
+
+Install using npm:
+
+```
+$ npm install @csimi/librtmp
+```
+
+A connection method is provided:
 
 `rtmp.connect(connectionOptions)`
 
-so you can connect to a Net Stream:
+so you can connect to a Net Connection:
 ```
-const rtmp = require("librtmpjs")
+const rtmp = require("@csimi/librtmp")
 const connectionOptions = require("./config.json")
 
 try {
-  const netStream = await rtmp.connect(connectionOptions)
-  netStream.play("demoPlaypath")
+  const netConnection = await rtmp.connect(connectionOptions)
+  netConnection.call("rpcName")
 } catch(e) {
   process.exit(1)
 }
@@ -30,12 +42,6 @@ The connection options must, at least, include the parameters to establish a con
 - `host`: the IP address for remote Media Server
 - `port`: the port for remote Media Server, `1935` by default
 - `app`: the remote application to connect to
-
-To include in your own projects, just:
-
-```
-npm install --save librtmp
-```
 
 # Handshake
 
@@ -50,7 +56,7 @@ At this moment, only two types of Handshakes are supported:
 By default, `rtmp.connect()` uses plain Handshake, but if it's needed to upgrade that, simply pass the handshake class as second argument to the method: 
 
 ```
-const rtmp = require('rtmp')
+const rtmp = require('@csimi/librtmp')
 const { DigestHandshake } = require('rtmp/handshake')
 const connectionOptions = require('./config')
 
@@ -75,7 +81,7 @@ To create a new Handshake, simply extend the Handshake base class overriding the
 
 NetConnection represents a connection to an application contained in a Media Server. The API for this corresponds to the methods described in the RFC:
 
-- `netConnection.connect(options)`
+- `netConnection.connect(options, ...arguments)`
 
   Once the socket has been established, connect to the Media Server application. The `options` argument can have the next properties:
 
@@ -134,7 +140,7 @@ Also, NetStream has some properties to handle the media sent by the server
     video.on('ready', out => { out.pipe(process.stdout) })
     ```
 
-  `"ready"` indicates when `netStream.video.out` is available for reading video tags from it. All these video tags can be multiplexed into a video container format such as `flv`. At this moment, `librtmpjs` provides a Stream Transform to do this. It is located at `src/message_stream/containers/flv`.
+  `"ready"` indicates when `netStream.video.out` is available for reading video tags from it. All these video tags can be multiplexed into a video container format such as `flv`. At this moment, `librtmp` provides a Stream Transform to do this. It is located at `src/message_stream/containers/flv`.
 
 Again, as with NetConnection, the best way to modify the NetStream behaviour is to extend it and override the methods to generate the commands for the API methods:
 
