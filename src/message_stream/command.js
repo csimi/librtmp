@@ -74,6 +74,11 @@ class CommandStream extends MessageStream {
     // TODO: definitively abstract this to avoid undefined errors!
     if (transactionId) {
       this.executionQueue[transactionId][method](eventData)
+    } else {
+      const callback = this[method]
+      if (typeof callback === 'function' && !this.constructor.prototype[method]) {
+        callback(...eventData.slice(1))
+      }
     }
   }
 }

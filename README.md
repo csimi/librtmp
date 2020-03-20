@@ -100,6 +100,12 @@ NetConnection represents a connection to an application contained in a Media Ser
 
   The returned Promise fulfills with the response of the RPC.
 
+- `netConnection.remoteMethod()`
+
+  You can define methods on the NetConnection object and call the methods from server-side code.
+
+  `netConnection.foobar = (...arguments) => console.log('server called foobar with', arguments);`
+
 - `netConnection.close()`
   
   Not described in RFC. Closes the connection to the Media Server.
