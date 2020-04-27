@@ -43,6 +43,10 @@ The connection options must, at least, include the parameters to establish a con
 - `port`: the port for remote Media Server, `1935` by default
 - `app`: the remote application to connect to
 
+Optional options:
+
+- `timeout`: amount of milliseconds to wait for NetConnection to succeed
+
 # Handshake
 
 The process of Handshaking is the first step to establish a RTMP connection to the server after the socket has been connected. It consists of messages exchange between the part that starts the process, in this case the client (C0, C1 and C2), and server (S0, S1 and S2). Depending on what type of Handshake is being performed these messages can contain certain data.
